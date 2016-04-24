@@ -3,8 +3,10 @@
 echo "Use daemonize to run the app"
 
 WORKPATH=$(pwd)
+PID=$(cat /var/run/goapp)
 
-if [ $(ps -ef | grep -v grep | grep hiworld) -eq 0 ]; then
-    daemonize/daemonize -p /var/run/goapp -l lock -u nobody $WORKPATH/hiworld
+if ps -p $PID >/dev/null
+then
+    daemonize/daemonize -a -p /var/run/goapp -l lock -u nobody $WORKPATH/hiworld
 fi
 
