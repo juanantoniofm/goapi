@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Installing daemonize"
 if [ ! -f daemonize/daemonize ]; then
+    echo "Installing daemonize"
     git clone git://github.com/bmc/daemonize.git
     cd daemonize
     sh configure
@@ -10,5 +10,7 @@ if [ ! -f daemonize/daemonize ]; then
     cd ..
 fi
 
-echo "Building the app"
-go build hiworld.go
+if [ ! -f hiworld ]; then
+    echo "Building the app"
+    go build hiworld.go
+fi
